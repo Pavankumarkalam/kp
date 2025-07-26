@@ -1,4 +1,3 @@
-# kp
 # ShoppeHV Application
 
 ## Overview

@@ -1,0 +1,44 @@
+/* Custom fix for page-card visibility */
+.page-card {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95); /* More opaque background */
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3); /* Stronger shadow */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 10; /* Higher z-index to ensure visibility */
+    display: none; /* Hidden by default, JS will show */
+}
+
+/* Fix for main container in different views */
+.main-container {
+    display: flex;
+    min-height: 80vh;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
+    padding: 1rem;
+}
+
+/* When in cart or checkout mode */
+.main-container.in-cart,
+.main-container.in-checkout {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* When in login mode */
+.main-container.in-login {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}

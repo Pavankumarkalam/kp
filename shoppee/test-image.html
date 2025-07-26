@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        .image-container {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #00e5ff;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+        }
+        h1 {
+            color: #00e5ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Banana Image Test</h1>
+    <div class="image-container">
+        <img src="images/fruits/banana.jpg" alt="Banana" id="bananaImg">
+        <p>Testing the banana image in the turquoise theme</p>
+    </div>
+    
+    <script>
+    // Check if image loads correctly
+    document.getElementById('bananaImg').onload = function() {
+        console.log('Banana image loaded successfully');
+        document.getElementById('status').textContent = 'Image loaded successfully';
+        document.getElementById('status').style.color = '#00ff00';
+    };
+    
+    document.getElementById('bananaImg').onerror = function() {
+        console.log('Error loading banana image');
+        document.getElementById('status').textContent = 'Error loading image';
+        document.getElementById('status').style.color = '#ff0000';
+    };
+    </script>
+    
+    <div id="status" style="margin-top: 20px; font-weight: bold;">Checking image...</div>
+</body>
+</html>

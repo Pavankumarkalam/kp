@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ShoppeHV Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles-v4.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="stylesheet" href="checkout-styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Info Section -->
+        <div class="info-section">
+            <h2>Simplify management<br>With <span class="highlight">ShoppeHV</span></h2>
+            <p>Shop fresh fruits with the best prices and elevate your health with nature's best.</p>
+        </div>
+
+        <!-- Login Section -->
+        <div id="login-section" class="login-section">
+            <div class="login-card">
+                <h1>Login to your account</h1>
+                <form id="login-form" autocomplete="off">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+
+                    <div class="show-pass">
+                        <input type="checkbox" id="showPassword" />
+                        <label for="showPassword">Show password</label>
+                    </div>
+
+                    <button type="submit" class="login-btn">Login</button>
+                    <p id="login-error"></p>
+                </form>
+
+                <!-- 👇 Add this BELOW the form -->
+                <div class="demo-credentials">
+                    <button type="button" class="toggle-btn" onclick="toggleCredentials()">
+                        <i class="fas fa-user-secret"></i> Show Demo Credentials
+                    </button>
+                    <div id="credentials-box" class="credentials-box">
+                        <p><strong>Username:</strong> HarshaTest</p>
+                        <p><strong>Password:</strong> TESTMANUAL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div id="cart-section" class="page-card" style="display:none;">
+        <!-- Cart Items Box -->
+        <div class="cart-items-box">
+            <h1 class="cart-title">🛒 Your Cart</h1>
+            <h2>Your Selected Items</h2>
+            <div id="cart" class="cart-items"></div>
+            <h2>Available Products</h2>
+            <div id="products" class="product-list"></div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h3>Many Customers Added the Following:</h3>
+            <div class="related-list" id="related-products">
+                <!-- Add via JS -->
+            </div>
+        </div>
+
+        <!-- Checkout Summary -->
+        <div class="checkout-summary">
+            <h3><i class="fas fa-shopping-cart"></i> Order Summary</h3>
+            <p><span>Subtotal:</span> <span>₹<span id="subtotal">0</span></span></p>
+            <p><span>Grand Total:</span> <span>₹<span id="grand-total">0</span></span></p>
+            <button id="checkout-btn" class="checkout-btn">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
+            <button class="continue-btn" onclick="goHome()">Continue Shopping <i class="fas fa-store"></i></button>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <div id="checkout-section" class="page-card" style="display:none;">
+        <div class="card-content">
+            <h1>Checkout <i class="fas fa-shopping-bag"></i></h1>
+            <p class="checkout-intro">Review your order and complete payment</p>
+            <div id="checkout-items"></div>
+            <div class="checkout-total-box">
+                <div class="checkout-row">
+                    <span>Subtotal:</span>
+                    <span class="checkout-price">₹<span id="checkout-subtotal">0</span></span>
+                </div>
+                <div class="checkout-row">
+                    <span>Shipping:</span>
+                    <span class="checkout-price">₹<span id="checkout-shipping">0</span></span>
+                </div>
+                <div class="checkout-row total">
+                    <span>Total:</span>
+                    <span class="checkout-price">₹<span id="checkout-total">0</span></span>
+                </div>
+            </div>
+            <button id="pay-btn" class="checkout-btn">Complete Payment <i class="fas fa-check-circle"></i></button>
+            <button id="back-to-cart-btn" class="continue-btn">Back to Cart <i class="fas fa-arrow-left"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>
+            <i class="fab fa-github"></i> Built by
+            <a href="https://github.com/harshaVardhanMyGit" target="_blank">Harsha</a> —
+            <a href="https://github.com/harshaVardhanMyGit/PlaywrightE2EFramework_UrbanLadder"
+                target="_blank">Playwright Repo</a> •
+            <a href="https://github.com/harshaVardhanMyGit/SeleniumE2EFramework_ProductStore" target="_blank">Selenium
+                Repo</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

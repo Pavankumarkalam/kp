@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Login Page</title>
+    
+    <!-- REQUIRED FONTS AND ICONS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- YOUR PROFESSIONAL STYLES -->
+    <link rel="stylesheet" href="professional-login-styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- INFO SECTION (LEFT SIDE) -->
+        <div class="info-section">
+            <h2>Simplify management<br>With <span class="highlight">YourApp</span></h2>
+            <p>Transform your workflow with our professional solution and elevate your productivity.</p>
+        </div>
+
+        <!-- LOGIN SECTION (RIGHT SIDE) -->
+        <div id="login-section" class="login-section">
+            <div class="login-card">
+                <h1>Login to your account</h1>
+                <form id="login-form" autocomplete="off">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div class="show-pass">
+                        <input type="checkbox" id="showPassword" />
+                        <label for="showPassword">Show password</label>
+                    </div>
+
+                    <button type="submit" class="login-btn">Login</button>
+                    <p id="login-error" style="display: none;"></p>
+                </form>
+
+                <!-- DEMO CREDENTIALS (Optional - Remove for production) -->
+                <div class="demo-credentials">
+                    <button type="button" class="toggle-btn" onclick="toggleCredentials()">
+                        <i class="fas fa-user-secret"></i> Show Demo Credentials
+                    </button>
+                    <div id="credentials-box" class="credentials-box">
+                        <p><strong>Username:</strong> demo@yourapp.com</p>
+                        <p><strong>Password:</strong> Demo123!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PROFESSIONAL LOGIN FUNCTIONALITY
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('login-error');
+
+            // Replace with your actual authentication logic
+            if (username === 'demo@yourapp.com' && password === 'Demo123!') {
+                // Success - redirect to your main application
+                alert('Login successful! Redirecting...');
+                // window.location.href = '/dashboard'; // Uncomment for real redirect
+                errorMsg.style.display = 'none';
+            } else {
+                // Error handling
+                errorMsg.textContent = 'Invalid username or password!';
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        // Show/Hide password functionality
+        document.getElementById('showPassword').addEventListener('change', function() {
+            const passwordInput = document.getElementById('password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        // Toggle demo credentials (Remove for production)
+        function toggleCredentials() {
+            const box = document.getElementById('credentials-box');
+            box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

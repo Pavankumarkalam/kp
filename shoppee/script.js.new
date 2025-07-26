@@ -1,0 +1,204 @@
+const relatedProducts = [
+    { id: 101, name: "Kiwi", price: 40 },
+    { id: 102, name: "Papaya", price: 30 },
+    { id: 103, name: "Dragon Fruit", price: 80 }
+];
+
+const products = [
+    { id: 1, name: "Apple", price: 20 },
+    { id: 2, name: "Banana", price: 10 },
+    { id: 3, name: "Orange", price: 15 },
+    { id: 4, name: "Mango", price: 25 },
+    { id: 5, name: "Grapes", price: 30 }
+];
+
+let cart = [];
+
+function toggleCredentials() {
+    const box = document.getElementById("credentials-box");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function renderRelatedProducts() {
+    const relatedDiv = document.getElementById("related-products");
+    relatedDiv.innerHTML = ""; // Clear existing content
+    relatedProducts.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <p>${item.name}</p>
+            <p>₹${item.price}</p>
+            <button onclick="addToCart(${item.id}, '${item.name}', ${item.price})">Add to Cart</button>
+        `;
+        relatedDiv.appendChild(card);
+    });
+}
+
+function goHome() {
+    document.getElementById("checkout-section").style.display = "none";
+    document.getElementById("cart-section").style.display = "none";
+    document.getElementById("login-section").style.display = "flex";
+    document.querySelector(".info-section").style.display = "flex"; // Show info section
+}
+
+window.onload = function () {
+    document.getElementById("login-form").onsubmit = function (e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const errorMsg = document.getElementById("login-error");
+
+        if (username === "HarshaTest" && password === "TESTMANUAL") {
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("checkout-section").style.display = "none";
+            document.getElementById("cart-section").style.display = "block";
+            document.querySelector(".info-section").style.display = "none";
+            displayProducts();
+            renderRelatedProducts();
+            displayCart();
+            errorMsg.style.display = "none";
+        } else {
+            errorMsg.textContent = "Invalid username or password!";
+            errorMsg.style.display = "block";
+        }
+    };
+
+    document.getElementById("showPassword").onchange = function () {
+        const pwdInput = document.getElementById("password");
+        pwdInput.type = this.checked ? "text" : "password";
+    };
+
+    // Event listeners for cart and checkout navigation
+    document.getElementById("checkout-btn").onclick = showCheckout;
+    document.getElementById("back-to-cart-btn").onclick = function() {
+        document.getElementById("checkout-section").style.display = "none";
+        document.getElementById("cart-section").style.display = "block";
+    };
+  
+    // Set up the pay button to complete order
+    document.getElementById("pay-btn").onclick = function() {
+        alert("Thank you for your purchase! Your order has been placed.");
+        cart = [];
+        goHome();
+    };
+};
+
+function displayProducts() {
+    const productsDiv = document.getElementById("products");
+    productsDiv.innerHTML = "";
+    products.forEach(product => {
+        const item = document.createElement("div");
+        item.className = "product-card";
+        item.innerHTML = `
+            <div class="product-info">
+                <div class="product-header">
+                    <h3 class="product-title">${product.name}</h3>
+                    <span class="product-price">Price: ₹${product.price}</span>
+                </div>
+                <p class="product-desc">Premium quality ${product.name.toLowerCase()}</p>
+                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+            </div>
+        `;
+        productsDiv.appendChild(item);
+    });
+}
+
+function displayCart() {
+    const cartDiv = document.getElementById("cart");
+    cartDiv.innerHTML = "";
+
+    if (cart.length === 0) {
+        cartDiv.innerHTML = "<p style='text-align:center;'>🛒 Your cart is empty.</p>";
+        document.getElementById("subtotal").textContent = "0";
+        document.getElementById("grand-total").textContent = "0";
+        return;
+    }
+
+    const table = document.createElement("table");
+    table.className = "cart-table";
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${cart.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>₹${(item.price * item.quantity).toFixed(2)}</td>
+                    <td><button onclick="removeFromCart(${item.id})" class="remove-btn"><i class="fas fa-trash"></i></button></td>
+                </tr>
+            `).join("")}
+        </tbody>
+    `;
+    cartDiv.appendChild(table);
+
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+    document.getElementById("grand-total").textContent = subtotal.toFixed(2);
+}
+
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId) || relatedProducts.find(p => p.id === productId);
+    if (!product) return;
+    
+    const cartItem = cart.find(item => item.id === productId);
+    if (cartItem) {
+        cartItem.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    displayCart();
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    displayCart();
+}
+
+// Show checkout page with cart items
+function showCheckout() {
+    // Hide cart section, show checkout section
+    document.getElementById("cart-section").style.display = "none";
+    document.getElementById("checkout-section").style.display = "block";
+    
+    const checkoutDiv = document.getElementById("checkout-items");
+    checkoutDiv.innerHTML = "";
+    
+    if (cart.length === 0) {
+        checkoutDiv.innerHTML = "<p class='empty-cart-message'>Your cart is empty. Add some items to checkout!</p>";
+        return;
+    }
+    
+    // Calculate totals
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shipping = subtotal > 0 ? 50 : 0; // ₹50 shipping fee if cart is not empty
+    const total = subtotal + shipping;
+    
+    // Update the checkout summary values
+    document.getElementById("checkout-subtotal").textContent = subtotal.toFixed(2);
+    document.getElementById("checkout-shipping").textContent = shipping.toFixed(2);
+    document.getElementById("checkout-total").textContent = total.toFixed(2);
+    
+    // Create checkout item elements
+    cart.forEach(item => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "checkout-item";
+        itemDiv.innerHTML = `
+            <img src="${item.image || 'https://via.placeholder.com/60'}" alt="${item.name}">
+            <div class="item-details">
+                <h4>${item.name}</h4>
+                <p>Quantity: ${item.quantity}</p>
+            </div>
+            <span class="price">₹${(item.price * item.quantity).toFixed(2)}</span>
+        `;
+        checkoutDiv.appendChild(itemDiv);
+    });
+}

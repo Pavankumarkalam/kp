@@ -1,0 +1,264 @@
+/* Dark Login Theme - Based on the provided image */
+:root {
+    --dark-bg: #002029;
+    --input-bg: rgba(255, 255, 255, 0.15);
+    --text-light: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --button-bg: #ffffff;
+    --button-text: #002029;
+    --input-radius: 25px;
+    --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset the body and main container for dark theme */
+body {
+    background-color: var(--dark-bg) !important;
+    background-image: none !important;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    color: var(--text-light);
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Style info section in dark theme */
+.info-section {
+    display: flex !important;
+    background: rgba(0, 40, 52, 0.7) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(10px) !important;
+    padding: 30px !important;
+    margin-bottom: 30px !important;
+    width: 90% !important;
+    max-width: 500px !important;
+}
+
+/* Login Section Styling */
+.login-section {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    box-shadow: none;
+    height: auto;
+    padding: 0;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 350px;
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: var(--box-shadow);
+    border: none;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.login-card h1 {
+    color: var(--text-light);
+    font-size: 24px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.login-card h1::after {
+    display: none;
+}
+
+.login-card .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.login-card label {
+    display: none;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: var(--input-radius);
+    background-color: var(--input-bg);
+    color: var(--text-light);
+    font-size: 16px;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-card input::placeholder {
+    color: var(--text-muted);
+}
+
+.login-card input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Password field with icon */
+#password {
+    padding-right: 50px; /* Space for the icon */
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+}
+
+/* Login button */
+.login-btn {
+    width: 100%;
+    background-color: var(--dark-turquoise);
+    color: var(--text-light);
+    border: none;
+    border-radius: var(--input-radius);
+    padding: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* Demo credentials section */
+.demo-credentials {
+    margin-top: 30px;
+}
+
+.demo-credentials::before {
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.toggle-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-muted);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--text-light);
+}
+
+.credentials-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+/* Hide show password checkbox */
+.show-pass {
+    display: none;
+}
+
+/* Error message */
+#login-error {
+    color: #ff6b6b;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* User icon in username field */
+.username-container {
+    position: relative;
+}
+
+.username-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 18px;
+    z-index: 10;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+}
+
+#username {
+    padding-left: 45px; /* Space for the icon */
+}
+
+/* Add some subtle gradients for depth */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(0, 60, 80, 0.4), transparent 70%),
+                radial-gradient(circle at bottom right, rgba(0, 40, 60, 0.4), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Dynamic background animation for dark theme */
+body.dark-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 90, 120, 0.2), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 70, 100, 0.2), transparent 40%);
+    z-index: -2;
+    animation: moveBg 15s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes moveBg {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}

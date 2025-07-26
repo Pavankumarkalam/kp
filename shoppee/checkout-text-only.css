@@ -1,0 +1,77 @@
+/* Enhanced Checkout Text Visibility */
+
+/* Remove any possible image references */
+#checkout-section img,
+#checkout-section .image,
+#checkout-section .checkout-item-image,
+#checkout-section [class*="image"] {
+    display: none !important;
+}
+
+/* Ensure all text has maximum contrast */
+#checkout-section * {
+    color: #FFFFFF !important; /* Set all text to white */
+}
+
+/* Add high contrast icons in place of images */
+.checkout-item::before {
+    content: "📦" !important;  /* Package emoji */
+    font-size: 24px !important;
+    margin-right: 15px !important;
+    display: block !important;
+}
+
+/* Add product-specific emojis */
+.checkout-item:has(.item-details h4:contains("Apple"))::before {
+    content: "🍎" !important;
+}
+
+.checkout-item:has(.item-details h4:contains("Banana"))::before {
+    content: "🍌" !important;
+}
+
+.checkout-item:has(.item-details h4:contains("Orange"))::before {
+    content: "🍊" !important;
+}
+
+.checkout-item:has(.item-details h4:contains("Mango"))::before {
+    content: "🥭" !important;
+}
+
+.checkout-item:has(.item-details h4:contains("Grapes"))::before {
+    content: "🍇" !important;
+}
+
+.checkout-item:has(.item-details h4:contains("Kiwi"))::before {
+    content: "🥝" !important;
+}
+
+/* Add neon text effect to important elements */
+#checkout-section h1,
+.checkout-row.total,
+#pay-btn {
+    text-shadow: 
+        0 0 5px #00FFFF,
+        0 0 10px #00FFFF,
+        0 0 15px #00FFFF !important;
+}
+
+/* Brighter price highlight */
+.checkout-price,
+.price {
+    background-color: #00FFFF !important;
+    color: #000000 !important;
+    padding: 5px 10px !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px #00FFFF !important;
+    font-weight: 900 !important;
+}
+
+/* Add a brighter outline to all checkout elements */
+#checkout-section .checkout-item,
+#checkout-section .checkout-total-box,
+#checkout-section #pay-btn,
+#checkout-section #back-to-cart-btn {
+    outline: 2px solid #00FFFF !important;
+    outline-offset: 2px !important;
+}
