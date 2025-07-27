@@ -1,0 +1,63 @@
+/* Advanced UI Animations */
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Apply animations to elements */
+.login-card {
+    animation: fadeSlideIn 0.8s ease-out;
+}
+
+.info-section {
+    animation: fadeSlideIn 0.8s ease-out 0s;
+    animation-fill-mode: both;
+}
+
+.product-card:hover .add-to-cart-btn {
+    animation: pulse 1s infinite;
+}
+
+.checkout-btn {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #4CAF50, #3d9140, #4CAF50);
+    animation: shimmer 3s infinite linear;
+}
+
+/* Add this to the main CSS file with @import url('animations.css'); */
